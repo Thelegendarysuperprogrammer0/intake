@@ -1,0 +1,15 @@
+intake:
+    resource: "@IntakeBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation

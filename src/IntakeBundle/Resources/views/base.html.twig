@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link href="{{ asset("bundles/intake/css/bootstrap.min.css") }}" rel="stylesheet">
+    {% block stylesheets %}
+        <link href="{{ asset('bundles/intake/css/style.css') }}" rel="stylesheet">
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+
+</head>
+<body>
+<div class="body">
+    <header>
+        <div class="navbar bgColor">
+            <div class="container">
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                    <img src="{{ asset('bundles/intake/img/logo.svg') }}" alt="Symfony!"
+                         href="{{ path('intake_default_index') }}">
+                </a>
+                <div class="col-4">
+                    <div class="container">
+                        {% if app.user %}
+                            <a class="font-mbo" href="{{ path('fos_user_security_logout') }}">
+                                {{ 'logout' }}
+                            </a>
+                            <a class="font-mbo" href="{{ path('studie_index') }}">
+                                {{ 'intakes' }}
+                            </a>
+
+                            <p class="font-mbo float-right"> welkom {{ app.User }}</p>
+                        {% else %}
+                            <a class="font-mbo" href="{{ path('fos_user_security_login') }}">
+                                {{ 'login' }}
+                            </a>
+                            <a class="font-mbo" href="{{ path('fos_user_registration_register') }}">
+                                {{ 'register' }}
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        {% block body %}{% endblock %}
+    </div>
+</div>
+{% block javascripts %}{% endblock %}
+</body>
+<footer class="footer">
+    <p>
+        @copyright
+    </p>
+</footer>
+</html>

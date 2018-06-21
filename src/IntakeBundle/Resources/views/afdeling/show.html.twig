@@ -1,0 +1,38 @@
+{% extends "@Intake/base.html.twig" %}
+
+{% block body %}
+    <h1>Afdeling</h1>
+
+    <table class="table table-dark">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ afdeling.id }}</td>
+            </tr>
+            <tr>
+                <th>Naam</th>
+                <td>{{ afdeling.naam }}</td>
+            </tr>
+            <tr>
+                <th>Opleiding</th>
+                <td>{{ afdeling.opleiding }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a class="btn btn-info" href="{{ path('afdeling_index') }}">Back to the list</a>
+        </li>
+        {% if is_granted("ROLE_ADMIN") %}
+        <li>
+            <a class="btn btn-success" href="{{ path('afdeling_edit', { 'id': afdeling.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input class="btn btn-danger" type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+        {% endif %}
+    </ul>
+{% endblock %}

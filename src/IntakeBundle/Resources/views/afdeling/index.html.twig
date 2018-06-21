@@ -1,0 +1,43 @@
+{% extends "@Intake/base.html.twig" %}
+
+{% block body %}
+    <h1>Afdelings list</h1>
+
+    <table class="table table-light">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Naam</th>
+                <th scope="col">Opleiding</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for afdeling in afdelings %}
+            <tr>
+                <td><a href="{{ path('afdeling_show', { 'id': afdeling.id }) }}">{{ afdeling.id }}</a></td>
+                <td>{{ afdeling.naam }}</td>
+                <td>{{ afdeling.opleiding }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a class="btn-sm btn-primary" href="{{ path('afdeling_show', { 'id': afdeling.id }) }}">show</a>
+                        </li>
+                        {% if is_granted("ROLE_ADMIN") %}
+                            <br>
+                        <li>
+                            <a class="btn-sm btn-primary" href="{{ path('afdeling_edit', { 'id': afdeling.id }) }}">edit</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% if is_granted("ROLE_ADMIN") %}
+    <ul>
+        <a class="btn btn-success" href="{{ path('afdeling_new') }}">Create a new afdeling</a>
+    </ul>
+{% endif %}
+{% endblock %}

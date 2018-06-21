@@ -1,0 +1,148 @@
+<?php
+// src/AppBundle/Entity/User.php
+
+namespace IntakeBundle\Entity;
+
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="fos_user")
+ */
+class User extends BaseUser
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="woonplaats", type="string", length=30)
+     *
+     * @Assert\NotBlank(message="Please enter your woonplaats.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max=30,
+     *     minMessage="The name is too short.",
+     *     maxMessage="The name is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
+     */
+    private $woonplaats;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adres", type="string", length=30)
+     *
+     * @Assert\NotBlank(message="Please enter your adres.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max=30,
+     *     minMessage="The name is too short.",
+     *     maxMessage="The name is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
+     */
+    private $adres;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="postcode", type="string", length=6)
+     *
+     * @Assert\NotBlank(message="Please enter your name.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=5,
+     *     max=6,
+     *     minMessage="The name is too short.",
+     *     maxMessage="The name is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
+     */
+    private $postcode;
+
+    public function __construct()
+    {
+        parent::__construct();
+        // your own logic
+    }
+
+    /**
+     * Set woonplaats
+     *
+     * @param string $woonplaats
+     *
+     * @return User
+     */
+    public function setWoonplaats($woonplaats)
+    {
+        $this->woonplaats = $woonplaats;
+
+        return $this;
+    }
+
+    /**
+     * Get woonplaats
+     *
+     * @return string
+     */
+    public function getWoonplaats()
+    {
+        return $this->woonplaats;
+    }
+
+    /**
+     * Set adres
+     *
+     * @param string $adres
+     *
+     * @return User
+     */
+    public function setAdres($adres)
+    {
+        $this->adres = $adres;
+
+        return $this;
+    }
+
+    /**
+     * Get adres
+     *
+     * @return string
+     */
+    public function getAdres()
+    {
+        return $this->adres;
+    }
+
+    /**
+     * Set postcode
+     *
+     * @param string $postcode
+     *
+     * @return User
+     */
+    public function setPostcode($postcode)
+    {
+        $this->postcode = $postcode;
+
+        return $this;
+    }
+
+    /**
+     * Get postcode
+     *
+     * @return string
+     */
+    public function getPostcode()
+    {
+        return $this->postcode;
+    }
+}

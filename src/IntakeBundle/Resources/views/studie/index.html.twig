@@ -1,0 +1,49 @@
+{% extends "@Intake/base.html.twig" %}
+
+{% block body %}
+    <h1>Intake list</h1>
+
+    <table class="table table-light">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Student</th>
+                <th scope="col">Naam</th>
+                <th scope="col">Locatie</th>
+                <th scope="col">Afdeling</th>
+                <th scope="col">Afspraak</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for studie in studies %}
+            <tr>
+                <td><a href="{{ path('studie_show', { 'id': studie.id }) }}">{{ studie.id }}</a></td>
+                <td>{{ studie.userId }}</td>
+                <td>{{ studie.naam }}</td>
+                <td>{{ studie.locatieId }}</td>
+                <td>{{ studie.afdelingId }}</td>
+                <td>{{ studie.afspraakId }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a class="btn-sm btn-primary" href="{{ path('studie_show', { 'id': studie.id }) }}">show</a>
+                        </li>
+                        {% if is_granted("ROLE_ADMIN") %}
+                        <br>
+                        <li>
+                            <a class="btn-sm btn-primary" href="{{ path('studie_edit', { 'id': studie.id }) }}">edit</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if is_granted("ROLE_ADMIN") %}
+    <ul>
+        <a class="btn btn-success" href="{{ path('studie_new') }}">Create a new studie</a>
+    </ul>
+    {% endif %}
+{% endblock %}

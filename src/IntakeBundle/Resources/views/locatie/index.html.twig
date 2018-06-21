@@ -1,0 +1,45 @@
+{% extends "@Intake/base.html.twig" %}
+
+{% block body %}
+    <h1>Locaties list</h1>
+
+    <table class="table table-light">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Plaats</th>
+                <th scope="col">Adres</th>
+                <th scope="col">Postcode</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for locatie in locaties %}
+            <tr>
+                <td><a href="{{ path('locatie_show', { 'id': locatie.id }) }}">{{ locatie.id }}</a></td>
+                <td>{{ locatie.plaats }}</td>
+                <td>{{ locatie.adres }}</td>
+                <td>{{ locatie.postcode }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a class="btn-sm btn-primary" href="{{ path('locatie_show', { 'id': locatie.id }) }}">show</a>
+                        </li>
+                        {% if is_granted("ROLE_ADMIN") %}
+                        <br>
+                        <li>
+                            <a class="btn-sm btn-primary" href="{{ path('locatie_edit', { 'id': locatie.id }) }}">edit</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% if is_granted("ROLE_ADMIN") %}
+    <ul>
+        <a class="btn btn-success" href="{{ path('locatie_new') }}">Create a new locatie</a>
+    </ul>
+{% endif %}
+{% endblock %}

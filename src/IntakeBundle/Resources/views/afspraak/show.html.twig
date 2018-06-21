@@ -1,0 +1,40 @@
+{% extends "@Intake/base.html.twig" %}
+
+{% block body %}
+    <h1>Afspraak</h1>
+
+    <table class="table table-dark">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ afspraak.id }}</td>
+            </tr>
+            <tr>
+                <th>Begin</th>
+                <td>{% if afspraak.begin %}{{ afspraak.begin|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Duur</th>
+                <td>{{ afspraak.duur }}</td>
+            </tr>
+            <tr>
+                <th>Docent</th>
+                <td>{{ afspraak.docentId }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('afspraak_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('afspraak_edit', { 'id': afspraak.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete" class="btn btn-danger">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
