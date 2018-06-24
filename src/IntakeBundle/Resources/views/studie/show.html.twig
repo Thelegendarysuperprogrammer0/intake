@@ -1,10 +1,11 @@
 {% extends "@Intake/base.html.twig" %}
 
 {% block body %}
-    <h1>Studie</h1>
+    <div class="flex-column full-width">
+        <h1>Studie</h1>
 
-    <table class="table table-dark">
-        <tbody>
+        <table class="table table-dark">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ studie.id }}</td>
@@ -29,22 +30,23 @@
                 <th>Afspraak</th>
                 <td>{{ studie.afspraakId }}</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <ul>
-        <li>
-            <a class="btn btn-info" href="{{ path('studie_index') }}">Back to the list</a>
-        </li>
-        {% if is_granted("ROLE_ADMIN") %}
-        <li>
-            <a class="btn btn-success" href="{{ path('studie_edit', { 'id': studie.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input class="btn btn-danger" type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-        {% endif %}
-    </ul>
+        <ul>
+            <li>
+                <a class="btn btn-info" href="{{ path('studie_index') }}">Back to the list</a>
+            </li>
+            {% if is_granted("ROLE_ADMIN") %}
+                <li>
+                    <a class="btn btn-success" href="{{ path('studie_edit', { 'id': studie.id }) }}">Edit</a>
+                </li>
+                <li>
+                    {{ form_start(delete_form) }}
+                    <input class="btn btn-danger" type="submit" value="Delete">
+                    {{ form_end(delete_form) }}
+                </li>
+            {% endif %}
+        </ul>
+    </div>
 {% endblock %}

@@ -1,10 +1,11 @@
 {% extends "@Intake/base.html.twig" %}
 
 {% block body %}
-    <h1>Afspraaks list</h1>
+    <div class="flex-column full-width">
+        <h1>Afspraaks list</h1>
 
-    <table class="table table-light">
-        <thead class="thead-dark">
+        <table class="table table-light">
+            <thead class="thead-dark">
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Begin</th>
@@ -12,31 +13,32 @@
                 <th scope="col">Docent</th>
                 <th scope="col">Actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for afspraak in afspraaks %}
-            <tr>
-                <td><a href="{{ path('afspraak_show', { 'id': afspraak.id }) }}">{{ afspraak.id }}</a></td>
-                <td>{% if afspraak.begin %}{{ afspraak.begin|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ afspraak.duur }}</td>
-                <td>{{ afspraak.docentId }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a class="btn-sm btn-primary" href="{{ path('afspraak_show', { 'id': afspraak.id }) }}">show</a>
-                        </li>
-                        <br>
-                        <li>
-                            <a class="btn-sm btn-primary" href="{{ path('afspraak_edit', { 'id': afspraak.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for afspraak in afspraaks %}
+                <tr>
+                    <td><a href="{{ path('afspraak_show', { 'id': afspraak.id }) }}">{{ afspraak.id }}</a></td>
+                    <td>{% if afspraak.begin %}{{ afspraak.begin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{{ afspraak.duur }}</td>
+                    <td>{{ afspraak.docentId }}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a class="btn-sm btn-primary" href="{{ path('afspraak_show', { 'id': afspraak.id }) }}">show</a>
+                            </li>
+                            <br>
+                            <li>
+                                <a class="btn-sm btn-primary" href="{{ path('afspraak_edit', { 'id': afspraak.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <ul>
-        <a class="btn btn-success" href="{{ path('afspraak_new') }}">Create a new afspraak</a>
-    </ul>
+        <ul>
+            <a class="btn btn-success" href="{{ path('afspraak_new') }}">Create a new afspraak</a>
+        </ul>
+    </div>
 {% endblock %}

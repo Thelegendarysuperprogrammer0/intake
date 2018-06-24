@@ -1,20 +1,22 @@
 {% extends "@Intake/base.html.twig" %}
 
 {% block body %}
-    {% if is_granted("ROLE_ADMIN") %}
-    <h1>Studie creation</h1>
+    <div class="flex-column full-width">
+        {% if is_granted("ROLE_ADMIN") %}
+            <h1>Studie creation</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input type="submit" value="Create"/>
+            {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('studie_index') }}">Back to the list</a>
-        </li>
-    </ul>
-    {% else %}
-    <p>je bent geen admin.</p>
-    {% endif %}
+            <ul>
+                <li>
+                    <a href="{{ path('studie_index') }}">Back to the list</a>
+                </li>
+            </ul>
+        {% else %}
+            <p>je bent geen admin.</p>
+        {% endif %}
+    </div>
 {% endblock %}

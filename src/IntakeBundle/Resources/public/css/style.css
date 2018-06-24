@@ -10,18 +10,17 @@
     height: 100vh;
 }
 
-.header {
+header {
     background-color: #fff;
-    height: 200px;
 }
-.font-mbo {
+.header-font {
     font-weight: 700;
     font-size: 0.9em;
     transition: 0.2s color ease-out;
     color: #3A0F49;
     text-decoration: none;
 }
-.font-mbo:hover {
+.header-font:hover {
     color: #e54160;
 }
 
@@ -46,7 +45,7 @@
 }
 
 .footer{
-    position: fixed;
+    position: relative;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -54,4 +53,28 @@
     background-color: #3A0F49;
     color: white;
     text-align: center;
+}
+
+.form-position{
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    height: 80%;
+    width: 30%;
+}
+
+.full-height{
+    display: flex;
+    height: 80%;
+}
+.full-width{
+    width: 100%;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.button-width{
+    width: min-content;
 }

@@ -13,37 +13,46 @@
 <body>
 <div class="body">
     <header>
-        <div class="navbar bgColor">
+        <nav class="navbar bgColor">
             <div class="container">
                 <a href="#" class="navbar-brand d-flex align-items-center">
                     <img src="{{ asset('bundles/intake/img/logo.svg') }}" alt="Symfony!"
                          href="{{ path('intake_default_index') }}">
                 </a>
-                <div class="col-4">
-                    <div class="container">
-                        {% if app.user %}
-                            <a class="font-mbo" href="{{ path('fos_user_security_logout') }}">
+            </div>
+            <div class="nav">
+                <div class="row">
+                    {% if app.user %}
+                        <li class="nav-item">
+                            <a class="header-font nav-link" href="{{ path('fos_user_security_logout') }}">
                                 {{ 'logout' }}
                             </a>
-                            <a class="font-mbo" href="{{ path('studie_index') }}">
+                        </li>
+                        <li class="nav-item">
+                            <a class="header-font nav-link" href="{{ path('studie_index') }}">
                                 {{ 'intakes' }}
                             </a>
-
-                            <p class="font-mbo float-right"> welkom {{ app.User }}</p>
-                        {% else %}
-                            <a class="font-mbo" href="{{ path('fos_user_security_login') }}">
+                        </li>
+                        <li class="nav-link">
+                            <p class="header-font float-right"> welkom {{ app.User }}</p>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="header-font nav-link" href="{{ path('fos_user_security_login') }}">
                                 {{ 'login' }}
                             </a>
-                            <a class="font-mbo" href="{{ path('fos_user_registration_register') }}">
+                        </li>
+                        <li class="nav-item">
+                            <a class="header-font nav-link" href="{{ path('fos_user_registration_register') }}">
                                 {{ 'register' }}
                             </a>
-                        {% endif %}
-                    </div>
+                        </li>
+                    {% endif %}
                 </div>
             </div>
-        </div>
+        </nav>
     </header>
-    <div class="container">
+    <div class="container full-height">
         {% block body %}{% endblock %}
     </div>
 </div>

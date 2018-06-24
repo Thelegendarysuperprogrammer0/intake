@@ -4,16 +4,21 @@
         {% if app.User %}
             {% if is_granted("ROLE_ADMIN") %}
                 <h2 class="title">Welkom admin {{ app.User }}</h2>
+                <a class="btn btn-primary button-width" href="{{ path('studie_index') }}">
+                    {{ 'intakes' }}
+                </a>
             {% else %}
                 <h2 class="title">Welkom {{ app.User }}</h2>
+                <a class="btn btn-primary button-width" href="{{ path('afspraak_new') }}">
+                    {{ 'afpraak maken' }}
+                </a>
             {% endif %}
         {% else %}
             <h2 class="title">Welkom bij MBORijnland</h2>
-            <a class="btn btn-primary" href="{{ path('fos_user_security_login') }}">
+            <a class="btn btn-primary button-width" href="{{ path('fos_user_security_login') }}">
                 {{ 'inloggen' }}
             </a>
         {% endif %}
-
     </div>
 {% endblock %}
 {% block fos_user_content %}{% endblock %}
